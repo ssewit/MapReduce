@@ -5,7 +5,6 @@
 <img width="427" alt="image" src="https://github.com/ssewit/MapReduce_PI/assets/105317921/152920f7-cc66-4cc3-8848-9b11fbd9a301">
 <img width="372" alt="image" src="https://github.com/ssewit/MapReduce_PI/assets/105317921/46bf807a-3d7d-4999-b642-9f15c8023810">
 
-
 Step 1: Generate an input file to the Pi MapReduce program
   
   Step 1.1: Create a regular Java program which accepts two command line arguments.
@@ -21,3 +20,13 @@ Step 3: Use the file generated in Step 1.2 as the input to execute the MapReduce
 
 Step 4: Calculate Pi in the driver program based on the numbers of inside darts and outside darts.
 
+Result in Hadoop environment
+
+<img width="437" alt="image" src="https://github.com/ssewit/MapReduce_PI/assets/105317921/4465ad71-24de-45cd-81e7-861adcd90d49">
+
+Input Data
+  $ mkdir PiCalculation
+  $ cd PiCalculation
+  $ vi GenerateRandomNumbers.java
+  $ javac GenerateRandomNumbers.java
+  $ java -cp . GenerateRandomNumbers
