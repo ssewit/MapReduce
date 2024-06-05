@@ -20,9 +20,18 @@ Step 3: Use the file generated in Step 1.2 as the input to execute the MapReduce
 
 Step 4: Calculate Pi in the driver program based on the numbers of inside darts and outside darts.
 
+## Test Result
+
 Result in Hadoop environment
 
 <img width="437" alt="image" src="https://github.com/ssewit/MapReduce_PI/assets/105317921/4465ad71-24de-45cd-81e7-861adcd90d49">
+
+
+Test Case:
+
+How many random numbers to generate: 1000000
+Radius = 100
+Pi = 3.119464
 
 ## Input data
 ```
@@ -33,3 +42,58 @@ Result in Hadoop environment
   $ java -cp . GenerateRandomNumbers
 ```
 
+## Ssh passphraseless setup
+Now check that you can ssh to the localhost without a passphrase:
+```
+  $ cd hadoop-3.3.5/
+  $ ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa
+  $ cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+  $ chmod 0600 ~/.ssh/authorized_keys
+  $ ssh localhost
+```
+
+## Make the HDFS directories required to execute MapReduce jobs(Copy input data to HDFS)
+
+Make sure to replace the username with your username in the machine
+```
+  $ cd ..
+  $ cd hadoop-3.3.5/
+  $ bin/hdfs namenode -format
+  $ sbin/start-dfs.sh
+  $ wget http://localhost:9870/
+  $ bin/hdfs dfs -mkdir /user
+  $ bin/hdfs dfs -mkdir /user/username
+  $ bin/hdfs dfs -mkdir /user/username/picalculate
+  $ bin/hdfs dfs -mkdir /user/username/picalculate/input
+  $ bin/hdfs dfs -put ../PiCalculation/PiCalculationInput /user/username/picalculate/input
+```
+## Code to calculate Pi value (java file)
+
+```
+  $ cd /hadoop-3.3.5
+  $ vi PiCalculation.java      
+```
+
+* Compile PiCalculation.java and create a jar
+```
+  $ bin/hadoop com.sun.tools.javac.Main PiCalculation.java
+  $ jar cf wc.jar PiCalculation*class  
+```
+
+## Run
+
+* Execute
+```
+  $ bin/hadoop jar wc.jar PiCalculation /user/username/picalculate/input /user/username/picalculate/output
+```
+
+* Output
+```
+  $ bin/hdfs dfs -ls /user/username/picalculate/output
+  $ bin/hdfs dfs -cat /user/username/picalculate/output/part-r-00000 
+```
+
+* Stop
+```
+  $ sbin/stop-dfs.sh
+```
