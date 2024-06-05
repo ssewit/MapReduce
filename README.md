@@ -24,5 +24,12 @@ Result in Hadoop environment
 
 <img width="437" alt="image" src="https://github.com/ssewit/MapReduce_PI/assets/105317921/4465ad71-24de-45cd-81e7-861adcd90d49">
 
-Input Data
+## Input data
+```
+  $ mkdir PiCalculation
+  $ cd PiCalculation
+  $ vi GenerateRandomNumbers.java
+  $ javac GenerateRandomNumbers.java
+  $ java -cp . GenerateRandomNumbers
+```
 
