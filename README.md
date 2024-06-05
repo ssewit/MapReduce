@@ -7,10 +7,12 @@
 
 
 Step 1: Generate an input file to the Pi MapReduce program
+  
   Step 1.1: Create a regular Java program which accepts two command line arguments.
     R: The radius
     N: The number of (x, y) pairs to create
     The Java program then randomly generates N pairs of (x, y) and displays them on the standard output.
+  
   Step 1.2: Run the program created in Step 1.1 and save the result in a file. The file is the input to Step 2's Pi MapReduce program.
 
 Step 2: Ccreate a MapReduce program to calculate the numbers of inside darts and outside darts.
