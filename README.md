@@ -30,7 +30,9 @@ Result in Hadoop environment
 Test Case:
 
 How many random numbers to generate: 1000000
+
 Radius = 100
+
 Pi = 3.119464
 
 ## Input data
